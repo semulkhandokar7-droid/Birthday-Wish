@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Rupa</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #1a1000;
+  overflow: hidden;
+}
+
+/* PAGE 1 - Image */
+#page1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.img-card {
+  width: 320px;
+  height: 420px;
+  border-radius: 24px;
+  background: linear-gradient(145deg, #3d1500, #c47a00, #ffd200);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 60px rgba(255,210,0,0.5);
+  position: relative;
+  overflow: hidden;
+}
+
+.spark {
+  position: absolute;
+  border-radius: 50%;
+  animation: tw ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes tw {
+  0%,100%{opacity:0} 50%{opacity:1}
+}
+
+.img-emoji { font-size: 5rem; animation: bns 1.4s ease-in-out infinite; margin-bottom: 16px; }
+@keyframes bns { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+
+.img-name {
+  font-family: Georgia, serif;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.4);
+  margin-bottom: 10px;
+}
+
+.img-tap {
+  font-family: Arial, sans-serif;
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.7);
+  letter-spacing: 1px;
+  border: 1px solid rgba(255,255,255,0.4);
+  padding: 7px 20px;
+  border-radius: 20px;
+  animation: glow 2s ease-in-out infinite;
+}
+@keyframes glow {
+  0%,100%{box-shadow:0 0 0 0 rgba(255,255,255,0.3)}
+  50%{box-shadow:0 0 0 8px rgba(255,255,255,0)}
+}
+
+/* PAGE 2 - Wish Card */
+#page2 {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.wish-card {
+  width: 320px;
+  border-radius: 24px;
+  background: linear-gradient(145deg, #3d1500, #c47a00, #ffd200);
+  padding: 40px 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 0 60px rgba(255,210,0,0.5);
+  position: relative;
+  overflow: hidden;
+}
+
+.w-emoji { font-size: 3.5rem; margin-bottom: 10px; animation: bns 1.4s ease-in-out infinite; }
+
+.w-name {
+  font-family: Georgia, serif;
+  font-size: 1.9rem;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  margin-bottom: 6px;
+}
+
+.w-head {
+  font-family: Georgia, serif;
+  font-size: 1rem;
+  color: rgba(255,255,255,0.85);
+  margin-bottom: 18px;
+}
+
+.w-msg {
+  font-family: Arial, sans-serif;
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.9);
+  line-height: 1.8;
+}
+</style>
+</head>
+<body>
+
+<!-- Page 1: Image -->
+<div id="page1" onclick="showWish()">
+  <div class="img-card" id="imgcard">
+    <div class="img-emoji">🎁</div>
+    <div class="img-name">Rupa</div>
+    <div class="img-tap">TAP TO OPEN</div>
+  </div>
+</div>
+
+<!-- Page 2: Wish -->
+<div id="page2">
+  <div class="wish-card" id="wishcard">
+    <div class="w-emoji">🎂</div>
+    <div class="w-name">Sabekunnahar Rupa</div>
+    <div class="w-head">🌟 Happy Birthday! 🌟</div>
+    <div class="w-msg">
+      On your special day, I wish you nothing but joy, love, and all the happiness you truly deserve. May every dream of yours come true this year. You are truly one of a kind! 🌹✨
+    </div>
+  </div>
+</div>
+
+<script>
+// Add sparkles to both cards
+function addSparks(el) {
+  const colors = ['#FFD700','#fff','#ffe066','#ffb700'];
+  for(let i=0;i<14;i++){
+    const d = document.createElement('div');
+    const s = 3 + Math.random()*6;
+    d.className = 'spark';
+    d.style.cssText = `width:${s}px;height:${s}px;background:${colors[Math.floor(Math.random()*colors.length)]};top:${Math.random()*100}%;left:${Math.random()*100}%;animation-duration:${1.5+Math.random()*2}s;animation-delay:${Math.random()*2}s;`;
+    el.appendChild(d);
+  }
+}
+addSparks(document.getElementById('imgcard'));
+addSparks(document.getElementById('wishcard'));
+
+function showWish() {
+  document.getElementById('page1').style.display = 'none';
+  const p2 = document.getElementById('page2');
+  p2.style.display = 'flex';
+  p2.style.animation = 'fadeIn 0.6s ease';
+}
+</script>
+<style>
+@keyframes fadeIn { from{opacity:0;transform:scale(0.9)} to{opacity:1;transform:scale(1)} }
+</style>
+</body>
+</html>
